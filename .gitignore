@@ -1,3 +1,8 @@
+# Output directories
+/bin
+/build
+/out
+
 # Prerequisites
 *.d
 

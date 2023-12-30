@@ -12,7 +12,7 @@
 #define nm_array_create(T) (T*)_nm_array_create(sizeof(T))
 
 // Destroys and cleans up memory allocated by array.
-#define nm_array_destroy(arr) free(_nm_array_get_base(arr)); arr = NULL
+#define nm_array_destroy(arr) free(_nm_array_get_base(arr)); arr = nm_nptr_t
 
 // Returns the number of elements in the array.
 #define nm_array_count(arr) (_nm_array_get_count(arr))
@@ -87,7 +87,7 @@
     if ((_nm_array_get_size(arr) + _nm_array_get_stride(arr)) > _nm_array_get_capacity(arr)) \
     {                                                                                        \
         _nm_array_get_capacity(arr) *= _NM_ARRAY_GROWTH_MULT;                                \
-        arr = realloc(_nm_array_get_base(arr), _nm_array_get_total_size(arr));               \
+        arr = (typeof(arr))realloc(_nm_array_get_base(arr), _nm_array_get_total_size(arr));  \
         arr = (typeof(arr))((void*)arr + _NM_ARRAY_HEADER_SIZE);                             \
     }                                                                                        \
 }
