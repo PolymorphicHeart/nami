@@ -3,4 +3,6 @@
 
 typedef unsigned long long u64;
 
+typedef char c8;
+
 #endif // NAMI_CORE_H
