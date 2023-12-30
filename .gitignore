@@ -1,3 +1,8 @@
+# Editor directories
+/.vscode
+/.idea
+/.vs
+
 # Output directories
 /bin
 /build
@@ -55,3 +60,6 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# MacOS Cache files
+*.DS_Store

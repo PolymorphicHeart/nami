@@ -2,7 +2,7 @@
 #define NAMI_ARRAY_H
 
 #include <stdlib.h>
-#include "core.h"
+#include "nami/core.h"
 
 /* ------ Public Array API ----------------
  * ----------------------------------------
