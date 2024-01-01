@@ -1,2 +1,2 @@
 # libnami
-C library for faster and more secure programming
+alternative to the C standard library for x64 systems
