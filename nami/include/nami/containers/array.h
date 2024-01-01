@@ -1,18 +1,20 @@
-#ifndef NAMI_ARRAY_H
-#define NAMI_ARRAY_H
+#ifndef NM_ARRAY_H
+#define NM_ARRAY_H
 
-#include <stdlib.h>
-#include "nami/core.h"
+#include "core.h"
 
-/* ------ Public Array API ----------------
- * ----------------------------------------
+/* -------- Public Array API --------------------
+ * ----------------------------------------------
 */
 
 // Creates a new array for elements of type T.
-#define nm_array_create(T) (T*)_nm_array_create(sizeof(T))
+#define nm_array_create(T) (T*)_nm_array_create(sizeof(T), 0)
+
+// Creates a new array for elements of type T with a reserved count.
+#define nm_array_create_reserved(T, size) (T*)_nm_array_create(sizeof(T), size)
 
 // Destroys and cleans up memory allocated by array.
-#define nm_array_destroy(arr) free(_nm_array_get_base(arr)); arr = nm_nptr_t
+#define nm_array_dispose(arr) free(_nm_array_get_base(arr)); arr = nullptr_t
 
 // Returns the number of elements in the array.
 #define nm_array_count(arr) (_nm_array_get_count(arr))
@@ -68,8 +70,8 @@
     }                                                                   \
 }
 
-/* ------ Array Implementation ------------
- * ----------------------------------------
+/* -------- Array Implementation ----------------
+ * ----------------------------------------------
 */
 
 #define _NM_ARRAY_GROWTH_MULT 0x2
@@ -92,18 +94,16 @@
     }                                                                                        \
 }
 
-static void* _nm_array_create (u64 elem_size)
+static void* _nm_array_create (u64 stride, u64 count)
 {
-    u64 stride   = elem_size;
-    u64 capacity = stride * _NM_ARRAY_GROWTH_MULT;
-
+    u64 capacity = (count > 0) ? stride * count : stride * _NM_ARRAY_GROWTH_MULT;
     void* ptr = calloc(1, _NM_ARRAY_HEADER_SIZE + capacity);
 
     ((u64*)ptr)[0] = stride;
-    ((u64*)ptr)[1] = 0;
+    ((u64*)ptr)[1] = count;
     ((u64*)ptr)[2] = capacity;
 
     return ptr + _NM_ARRAY_HEADER_SIZE;
 }
 
-#endif // NAMI_ARRAY_H
+#endif // NM_ARRAY_H
