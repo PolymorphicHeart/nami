@@ -51,7 +51,7 @@ static c8* _nm_str_append_str (c8* str1, const c8* str2)
     if (!str2) return str1;
     else if (!str1) return nm_nptr_t;
 
-    u64 str2_len = _nm_str_get_capacity(str2);
+    u64 str2_len = nm_str_size(str2);
 
     if (str2_len < 1) return str1;
 

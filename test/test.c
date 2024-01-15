@@ -6,10 +6,14 @@
 
 i32 nm_main (const c8** args)
 {
-    c8* str = nm_str_create("");
-    c8* str2 = nm_str_create("[EOF]");
+    c8* str = nm_str_create("args [");
+    c8* str2 = nm_str_create(" ]");
 
-    for (u64 i = 0; i < nm_array_count(args); i++) nm_str_append(NM_STR_C, str, args[i]);
+    for (u64 i = 0; i < nm_array_count(args); i++) 
+    {
+        nm_str_append(NM_STR_C, str, " ");
+        nm_str_append(NM_STR_C, str, args[i]);
+    }
 
     nm_str_append(NM_STR, str, str2);
 
