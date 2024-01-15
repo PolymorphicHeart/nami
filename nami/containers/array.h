@@ -14,7 +14,7 @@
 #define nm_array_create_reserved(T, size) (T*)_nm_array_create(sizeof(T), size)
 
 // Destroys and cleans up memory allocated by array.
-#define nm_array_dispose(arr) free(_nm_array_get_base(arr)); arr = nullptr_t
+#define nm_array_dispose(arr) free(_nm_array_get_base(arr)); arr = nm_nptr_t
 
 // Returns the number of elements in the array.
 #define nm_array_count(arr) (_nm_array_get_count(arr))
