@@ -29,15 +29,9 @@ extern "C" {
 #if defined(NM_PLATFORM_WINDOWS)
 #define NM_SYMBOL_EXPORT __declpsec(dllexport)
 #define NM_SYMBOL_IMPORT __declspec(dllimport)
-#   if defined(NAMI_BUILD_SHARED)
-#       define NMAPI NM_SYMBOL_EXPORT
-#   else
-#       define NMAPI NM_SYMBOL_IMPORT
-#   endif
 #else
 #   define NM_SYMBOL_EXPORT __attribute__((visibility("default")))
 #   define NM_SYMBOL_IMPORT
-#   define NMAPI
 #endif // SYMBOL EXPORTING
 
 #if defined(_MSC_VER)
