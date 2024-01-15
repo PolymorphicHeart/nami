@@ -7,8 +7,8 @@
  * ----------------------------------------------
 */
 
-#define NM_STR    ((u8)0)
-#define NM_STR_C  ((i8)0)
+#define NM_STR   ((u8)0)
+#define NM_STR_C ((i8)0)
 
 // Creates a new string from a const string.
 #define nm_str_create(cstr) _nm_str_create(cstr)
