@@ -1,2 +1,2 @@
 # libnami
-C helper library
+C header only helper library

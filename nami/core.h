@@ -1,40 +1,50 @@
 #ifndef NAMI_CORE_H
 #define NAMI_CORE_H
 
-/* ------ Macros & Defines --------------------
- * --------------------------------------------
+/* ------ Macros & Defines ----------------------
+ * ----------------------------------------------
 */
 
 #if defined(__cplusplus)
-# extern "C" {
+extern "C" {
 #endif // __cplusplus
 
 #if defined(_WIN64)
-#   define NAMI_PLATFORM_WINDOWS
+#   define NM_PLATFORM_WINDOWS
 #elif defined(__APPLE__)
-#   define NAMI_PLATFORM_DARWIN
-#   define NAMI_PLATFORM_APPLE
-#   define NAMI_PLATFORM_UNIX
+#   define NM_PLATFORM_DARWIN
+#   define NM_PLATFORM_APPLE
+#   define NM_PLATFORM_UNIX
 #elif defined(__linux__)
-#   define NAMI_PLATFORM_LINUX
-#   define NAMI_PLATFORM_UNIX
+#   define NM_PLATFORM_LINUX
+#   define NM_PLATFORM_UNIX
 #endif // PLATFORMS
 
 #if defined(__amd64__)
-#   define NAMI_ARCH_AMD64
+#   define NM_ARCH_AMD64
 #elif defined(__aarch64__)
-#   define NAMI_ARCH_ARM64
+#   define NM_ARCH_ARM64
 #endif // ARCHITECTURE
 
-#if defined(NAMI_PLATFORM_WINDOWS)
+#if defined(NM_PLATFORM_WINDOWS)
+#define NM_SYMBOL_EXPORT __declpsec(dllexport)
+#define NM_SYMBOL_IMPORT __declspec(dllimport)
 #   if defined(NAMI_BUILD_SHARED)
-#       define NMAPI __declspec(dllexport)
+#       define NMAPI NM_SYMBOL_EXPORT
 #   else
-#       define NMAPI __declspec(dllimport)
+#       define NMAPI NM_SYMBOL_IMPORT
 #   endif
 #else
+#   define NM_SYMBOL_EXPORT __attribute__((visibility("default")))
+#   define NM_SYMBOL_IMPORT
 #   define NMAPI
-#endif // EXPORT SYMBOLS
+#endif // SYMBOL EXPORTING
+
+#if defined(_MSC_VER)
+#   define NM_BREAKPOINT __debugbreak()
+#else
+#   define NM_BREAKPOINT __builtin_trap()
+#endif // BREAKPOINTS
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -74,7 +84,7 @@ NM_STATIC_ASSERT (sizeof(f32) == 4, "f32 expected to be 4 byte(s)");
 NM_STATIC_ASSERT (sizeof(f64) == 8, "f64 expected to be 8 byte(s)");
 
 #if defined(__cplusplus)
-# extern "C" }
+}
 #endif // __cplusplus
 
 #endif // NAMI_CORE_H

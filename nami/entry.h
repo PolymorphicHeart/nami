@@ -7,8 +7,8 @@ i32 nm_main (const c8** args);
 
 i32 main (i32 argc, const c8** argv)
 {
-    const c8** args = nm_array_create(const c8*);
-    for (i32 i = 0; i < argc; i++) nm_array_push_back(args, argv[i]);
+    const c8** args = nm_array_create_reserved(const c8*, argc);
+    for (i32 i = 0; i < argc; i++) args[i] = argv[i];
 
     i32 ret = nm_main(args);
     nm_array_dispose(args);

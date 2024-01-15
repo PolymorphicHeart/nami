@@ -1,9 +1,9 @@
-#ifndef NM_ARRAY_H
-#define NM_ARRAY_H
+#ifndef NAMI_ARRAY_H
+#define NAMI_ARRAY_H
 
 #include "core.h"
 
-/* -------- Public Array API --------------------
+/* ------ Public Array API ----------------------
  * ----------------------------------------------
 */
 
@@ -70,7 +70,18 @@
     }                                                                   \
 }
 
-/* -------- Array Implementation ----------------
+// Collapses the heap capacity to fit the data.
+#define nm_array_resize_to_fit(arr)                                                         \
+{                                                                                           \
+    if (_nm_array_get_capacity(arr) > _nm_array_get_size(arr))                              \
+    {                                                                                       \
+        _nm_array_get_capacity(arr) = _nm_array_get_size(arr);                              \
+        arr = (typeof(arr))realloc(_nm_array_get_base(arr), _nm_array_get_total_size(arr)); \
+        arr = (typeof(arr))((void*)arr + _NM_ARRAY_HEADER_SIZE);                            \
+    }                                                                                       \
+}
+
+/* ------ Array Implementation ------------------
  * ----------------------------------------------
 */
 
@@ -106,4 +117,4 @@ static void* _nm_array_create (u64 stride, u64 count)
     return ptr + _NM_ARRAY_HEADER_SIZE;
 }
 
-#endif // NM_ARRAY_H
+#endif // NAMI_ARRAY_H
