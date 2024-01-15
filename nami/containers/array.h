@@ -11,7 +11,7 @@
 #define nm_array_create(T) (T*)_nm_array_create(sizeof(T), 0)
 
 // Creates a new array for elements of type T with a reserved count.
-#define nm_array_create_reserved(T, size) (T*)_nm_array_create(sizeof(T), size)
+#define nm_array_create_reserved(T, count) (T*)_nm_array_create(sizeof(T), count)
 
 // Destroys and cleans up memory allocated by array.
 #define nm_array_dispose(arr) free(_nm_array_get_base(arr)); arr = nm_nptr_t
