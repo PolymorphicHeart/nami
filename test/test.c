@@ -20,5 +20,7 @@ i32 nm_main (const c8** args)
     printf("size: %llu -> %s\n", nm_str_size(str), str);
 
     nm_str_dispose(str);
+    nm_str_dispose(str2);
+    
     return 0;
 }
