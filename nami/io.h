@@ -1,5 +1,5 @@
-#ifndef NAMI_TERMINAL_H
-#define NAMI_TERMINAL_H
+#ifndef NAMI_IO_H
+#define NAMI_IO_H
 
 #include "core.h"
 
@@ -25,4 +25,4 @@
 #define NM_ANSI_COLOR_BOLD_CYAN    "\033[1m\033[36m"
 #define NM_ANSI_COLOR_BOLD_WHITE   "\033[1m\033[37m"
 
-#endif // NAMI_TERMINAL_H
+#endif // NAMI_IO_H
