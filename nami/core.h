@@ -10,20 +10,28 @@ extern "C" {
 #endif // __cplusplus
 
 #if defined(_WIN64)
-#   define NM_PLATFORM_WINDOWS
+#   define NM_PLATFORM_WINDOWS 1
 #elif defined(__APPLE__)
-#   define NM_PLATFORM_DARWIN
-#   define NM_PLATFORM_APPLE
-#   define NM_PLATFORM_UNIX
+#   define NM_PLATFORM_DARWIN 1
+#   define NM_PLATFORM_APPLE  1
+#   define NM_PLATFORM_UNIX   1
+#   include <TargetConditionals.h>
+#   if TARGET_OS_OSX
+#       define NM_PLATFORM_APPLE_MACOS 1
+#   elif TARGET_OS_IPHONE
+#       define NM_PLATFORM_APPLE_IOS 1
+#   elif TARGET_OS_SIMULATOR
+#       define NM_PLATFORM_APPLE_IOS_SIMULATOR 1
+#   endif // APPLE PLATFORMS
 #elif defined(__linux__)
-#   define NM_PLATFORM_LINUX
-#   define NM_PLATFORM_UNIX
+#   define NM_PLATFORM_LINUX 1
+#   define NM_PLATFORM_UNIX  1
 #endif // PLATFORMS
 
 #if defined(__amd64__)
-#   define NM_ARCH_AMD64
+#   define NM_ARCH_AMD64 1
 #elif defined(__aarch64__)
-#   define NM_ARCH_ARM64
+#   define NM_ARCH_ARM64 1
 #endif // ARCHITECTURE
 
 #if defined(NM_PLATFORM_WINDOWS)

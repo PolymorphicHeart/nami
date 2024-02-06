@@ -89,7 +89,6 @@ static c8* _nm_str_create (const c8* cstr)
     c8* ptr = calloc(1, _NM_STRING_HEADER_SIZE + capacity);
 
     ((u64*)ptr)[0] = capacity;
-
     ptr += _NM_STRING_HEADER_SIZE;
 
     if (capacity > 1) memmove(ptr, cstr, capacity);
