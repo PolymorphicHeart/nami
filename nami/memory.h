@@ -7,10 +7,42 @@
 
 #define nm_uptr_t(T) __attribute__((cleanup(_nm_mem_free_stack))) T
 
-__attribute__ ((always_inline))
-inline static void _nm_mem_free_stack(void* ptr) {
-    printf("destructor called!\n");
+struct _nm_uptr_meta
+{
+    void (*destructor)(void *);
+    void *ptr;
+};
+
+static struct _nm_uptr_meta* _nm_uptr_get_meta(void *ptr) 
+{
+    return ptr - sizeof (struct _nm_uptr_meta);
 }
 
+__attribute__((malloc))
+static void* _nm_uptr_alloc(size_t size, void (*destructor)(void *)) 
+{
+    struct _nm_uptr_meta *meta = malloc(sizeof (struct _nm_uptr_meta) + size);
+    *meta = (struct _nm_uptr_meta) 
+    {
+        .destructor = destructor,
+        .ptr  = meta + 1
+    };
+    return meta->ptr;
+}
+
+static void _nm_uptr_free(void *ptr) 
+{
+    if (ptr == nm_nptr_t) return;
+    struct _nm_uptr_meta *meta = get_meta(ptr);
+    assert(ptr == meta->ptr);
+    meta->destructor(ptr);
+    free(meta);
+}
+
+__attribute__ ((always_inline))
+inline static void _nm_mem_free_stack(void* ptr) 
+{
+    _nm_uptr_free(*(void **) ptr);
+}
 
 #endif // NAMI_MEMORY_H
