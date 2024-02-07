@@ -13,6 +13,12 @@
 #   define NM_CPP_HEADER_CHECK_END
 #endif // cpp header checks
 
+#if !defined(NDEBUG) || defined(DEBUG)
+#   define NM_BUILD_DEBUG 1
+#else
+#   define NM_BUILD_RELEASE 1
+#endif
+
 #if defined(_WIN32)
 #   define NM_PLATFORM_WINDOWS 1
 #elif defined(__APPLE__)
@@ -64,9 +70,9 @@
 
 #define NM_STATIC_ASSERT(expr, msg) _Static_assert(expr, msg)
 
-#define nm_nptr_t ((void*)0)
+#define nm_nptr ((void*)0)
 
-typedef __builtin_va_list nm_vargs_t;
+typedef __builtin_va_list nm_vargs;
 
 typedef __UINT8_TYPE__   u8;
 typedef __UINT16_TYPE__ u16;

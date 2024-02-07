@@ -7,12 +7,14 @@
 
 NM_CPP_HEADER_CHECK_START
 
-#define nm_uptr_t(T) __attribute__((cleanup(_nm_mem_free_stack))) T
+#define nm_make_unique(T, dest) _nm_uptr_alloc(sizeof(T), dest)
+
+#define nm_uptr(T) __attribute__((cleanup(_nm_mem_free_stack))) T*
 
 struct _nm_uptr_meta
 {
     void (*destructor)(void *);
-    void *ptr;
+    void* ptr;
 };
 
 static struct _nm_uptr_meta* _nm_uptr_get_meta(void *ptr) 
@@ -34,7 +36,7 @@ static void* _nm_uptr_alloc(size_t size, void (*destructor)(void *))
 
 static void _nm_uptr_free(void *ptr) 
 {
-    if (ptr == nm_nptr_t) return;
+    if (ptr == nm_nptr) return;
     struct _nm_uptr_meta *meta = _nm_uptr_get_meta(ptr);
     //assert(ptr == meta->ptr);
     meta->destructor(ptr);
