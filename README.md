@@ -1,6 +1,14 @@
-# libnami
-C header only helper library
+<img src="branding/libnami.png" align="left" width="200px"/>
+<h1>libnami - C helper library</h1>
+<div float="left">
+<img alt="GitHub License" src="https://img.shields.io/github/license/PolymorphicHeart/libnami">
+<img alt="Static Badge" src="https://img.shields.io/badge/language-C-white">
 
-- Ease of use macros
-- Generic dynamic arrays
-- Dynamic string manipulation
+</div>
+
+Header only library for quality of life improvements. Includes dynamically allocated containers,
+improved string handling, memory management helpers, useful macros, and more.
+<br clear="left"/>
+<br/>
+
+<h2>Features</h2>
