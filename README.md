@@ -11,7 +11,7 @@ improved string handling, memory management helpers, useful macros, and more.
 <br clear="left"/>
 <br/>
 
-<h2>Features</h2>
+<h2>Planned features</h2>
 
  - [ ] Useful quality of life macros and defines
  - [ ] Dynamic containers (such as vec)
