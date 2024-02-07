@@ -3,11 +3,11 @@
 
 #include "containers/array.h"
 
-i32 nm_main (const c8** args);
+i32 nm_main (nm_array_t(const c8*) args);
 
 i32 main (i32 argc, const c8** argv)
 {
-    const c8** args = nm_array_create_reserved(const c8*, argc);
+    nm_array_t(const c8*) args = nm_array_create_res(const c8*, argc);
     for (i32 i = 0; i < argc; i++) args[i] = argv[i];
 
     i32 ret = nm_main(args);

@@ -1,13 +1,12 @@
 #include <nami/entry.h>
-#include <nami/containers/string.h>
+#include <nami/str.h>
 #include <nami/memory.h>
 #include <nami/io.h>
 
-#include <stdio.h>
 #include "test.h"
 
-i32 nm_main (const c8** args)
+i32 nm_main (nm_array_t(const c8*) args)
 {
-    nm_uptr_t(i32*) example = nm_nptr_t;
+    //nm_uptr_t(i32*) example = nm_nptr_t;
     return 0;
 }

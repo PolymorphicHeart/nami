@@ -7,11 +7,14 @@
  * ----------------------------------------------
 */
 
+// Defines an array of type T.
+#define nm_array_t(T) T*
+
 // Creates a new array for elements of type T.
 #define nm_array_create(T) (T*)_nm_array_create(sizeof(T), 0)
 
 // Creates a new array for elements of type T with a reserved count.
-#define nm_array_create_reserved(T, count) (T*)_nm_array_create(sizeof(T), count)
+#define nm_array_create_res(T, count) (T*)_nm_array_create(sizeof(T), count)
 
 // Destroys and cleans up memory allocated by array.
 #define nm_array_dispose(arr) free(_nm_array_get_base(arr)); arr = nm_nptr_t
@@ -105,6 +108,8 @@
     }                                                                                        \
 }
 
+NM_CPP_HEADER_CHECK_START
+
 static void* _nm_array_create (u64 stride, u64 count)
 {
     u64 capacity = (count > 0) ? stride * count : stride * _NM_ARRAY_GROWTH_MULT;
@@ -116,5 +121,7 @@ static void* _nm_array_create (u64 stride, u64 count)
 
     return ptr + _NM_ARRAY_HEADER_SIZE;
 }
+
+NM_CPP_HEADER_CHECK_END
 
 #endif // NAMI_ARRAY_H
