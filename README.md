@@ -2,7 +2,7 @@
 <h1>libnami - C helper library</h1>
 <div float="left">
 <img alt="GitHub License" src="https://img.shields.io/github/license/PolymorphicHeart/libnami">
-<img alt="Static Badge" src="https://img.shields.io/badge/language-C-white">
+<img alt="Static Badge" src="https://img.shields.io/badge/language-C23-white">
 
 </div>
 
