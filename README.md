@@ -1,4 +1,4 @@
-<img src="branding/libnami.png" align="left" width="200px"/>
+<img src="branding/libnami.png" align="left" width="20%"/>
 <h1>libnami - C helper library</h1>
 <div float="left">
 <img alt="GitHub License" src="https://img.shields.io/github/license/PolymorphicHeart/libnami">
@@ -12,3 +12,15 @@ improved string handling, memory management helpers, useful macros, and more.
 <br/>
 
 <h2>Features</h2>
+
+ - [ ] Useful quality of life macros and defines
+ - [ ] Dynamic containers (such as vec)
+ - [ ] String manipulation
+ - [ ] Easier IO functionality and formatting
+ - [ ] Memory handling and smart pointers
+ - [ ] Tcp and udp networking
+
+<b> 
+  ‼ Note: This library is in its early stages of development. Stability issues, 
+  breaking API changes, and missing features are all to be expected!
+</b>
