@@ -2,6 +2,7 @@
 /.vscode
 /.idea
 /.vs
+/.zed
 
 # Output directories
 /bin
