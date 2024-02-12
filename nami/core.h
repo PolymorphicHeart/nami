@@ -11,7 +11,7 @@
 #else
 #   define NM_CPP_HEADER_CHECK_START
 #   define NM_CPP_HEADER_CHECK_END
-#endif // cpp header checks
+#endif // CPP HEADER CHECKS
 
 #if !defined(NDEBUG) || defined(DEBUG)
 #   define NM_BUILD_DEBUG 1
@@ -72,7 +72,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define NM_STATIC_ASSERT(expr, msg) _Static_assert(expr, msg)
+#define nm_static_assert(expr, msg) _Static_assert(expr, msg)
 
 #define nm_nptr ((void*)0)
 
@@ -100,18 +100,32 @@ typedef char   c8;
 #   endif
 #endif
 
-NM_STATIC_ASSERT (sizeof(u8)  == 1, "u8 expected to be 1 byte");
-NM_STATIC_ASSERT (sizeof(u16) == 2, "u16 expected to be 2 byte(s)");
-NM_STATIC_ASSERT (sizeof(u32) == 4, "u32 expected to be 4 byte(s)");
-NM_STATIC_ASSERT (sizeof(u64) == 8, "u64 expected to be 8 byte(s)");
+nm_static_assert (sizeof(u8)  == 1, "u8 expected to be 1 byte");
+nm_static_assert (sizeof(u16) == 2, "u16 expected to be 2 byte(s)");
+nm_static_assert (sizeof(u32) == 4, "u32 expected to be 4 byte(s)");
+nm_static_assert (sizeof(u64) == 8, "u64 expected to be 8 byte(s)");
 
-NM_STATIC_ASSERT (sizeof(i8)  == 1, "i8 expected to be 1 byte");
-NM_STATIC_ASSERT (sizeof(i16) == 2, "i16 expected to be 2 byte(s)");
-NM_STATIC_ASSERT (sizeof(i32) == 4, "i32 expected to be 4 byte(s)");
-NM_STATIC_ASSERT (sizeof(i64) == 8, "i64 expected to be 8 byte(s)");
+nm_static_assert (sizeof(i8)  == 1, "i8 expected to be 1 byte");
+nm_static_assert (sizeof(i16) == 2, "i16 expected to be 2 byte(s)");
+nm_static_assert (sizeof(i32) == 4, "i32 expected to be 4 byte(s)");
+nm_static_assert (sizeof(i64) == 8, "i64 expected to be 8 byte(s)");
 
-NM_STATIC_ASSERT (sizeof(c8)  == 1, "c8 expected to be 1 byte");
-NM_STATIC_ASSERT (sizeof(f32) == 4, "f32 expected to be 4 byte(s)");
-NM_STATIC_ASSERT (sizeof(f64) == 8, "f64 expected to be 8 byte(s)");
+nm_static_assert (sizeof(c8)  == 1, "c8 expected to be 1 byte");
+nm_static_assert (sizeof(f32) == 4, "f32 expected to be 4 byte(s)");
+nm_static_assert (sizeof(f64) == 8, "f64 expected to be 8 byte(s)");
+
+#define nm_assert(expr, msg)                                       \
+{                                                                  \
+    if (expr) {}                                                   \
+    else                                                           \
+    {                                                              \
+        printf                                                     \
+        (                                                          \
+            "assert failed (%s)\n-> file: %s\n-> ln: %d fn: %s\n", \
+            #expr, __FILE__, __LINE__, __FUNC__                    \
+        );                                                         \
+        NM_BREAKPOINT;                                             \
+    }                                                              \
+}
 
 #endif // NAMI_CORE_H

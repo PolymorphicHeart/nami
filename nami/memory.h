@@ -1,50 +1,63 @@
 #ifndef NAMI_MEMORY_H
 #define NAMI_MEMORY_H
 
-//TODO: implement smart pointers with destructors
-
 #include "core.h"
 
 NM_CPP_HEADER_CHECK_START
 
-#define nm_make_unique(T, dest) _nm_uptr_alloc(sizeof(T), dest)
+#define nm_make_unique(T, dtor) _nm_uptr_alloc(sizeof(T), dtor)
 
-#define nm_uptr(T) __attribute__((cleanup(_nm_mem_free_stack))) T*
+#define nm_uptr(T) __attribute__((cleanup(_nm_mem_free_stack))) T
 
 struct _nm_uptr_meta
 {
-    void (*destructor)(void *);
+    void (*dtor)(void *);
     void* ptr;
 };
 
-static struct _nm_uptr_meta* _nm_uptr_get_meta(void *ptr) 
+static struct _nm_uptr_meta* _nm_uptr_get_meta(void* ptr) 
 {
-    return ptr - sizeof (struct _nm_uptr_meta);
+    return ptr - sizeof(struct _nm_uptr_meta);
 }
 
 __attribute__((malloc))
-static void* _nm_uptr_alloc(size_t size, void (*destructor)(void *)) 
+static void* _nm_uptr_alloc (usize size, void (*dtor)(void *)) 
 {
-    struct _nm_uptr_meta *meta = calloc(1, sizeof (struct _nm_uptr_meta) + size);
-    *meta = (struct _nm_uptr_meta) 
-    {
-        .destructor = destructor,
+    struct _nm_uptr_meta* meta = malloc(sizeof(struct _nm_uptr_meta) + size);
+    *meta = (struct _nm_uptr_meta) {
+        .dtor = dtor,
         .ptr  = meta + 1
     };
+
+    //printf("meta: %p ptr: %p\n", meta, meta->ptr);
     return meta->ptr;
 }
 
-static void _nm_uptr_free(void *ptr) 
+__attribute__((malloc))
+static void* _nm_uptr_realloc (void* ptr, usize size)
+{
+    void* dtor = _nm_uptr_get_meta(ptr)->dtor;
+
+    struct _nm_uptr_meta* meta = realloc(_nm_uptr_get_meta(ptr), sizeof(struct _nm_uptr_meta) + size);
+    *meta = (struct _nm_uptr_meta) {
+        .dtor = dtor,
+        .ptr  = meta + 1
+    };
+
+    //printf("meta: %p ptr: %p\n", meta, meta->ptr);
+    return meta->ptr;
+}
+
+static void _nm_uptr_free (void* ptr) 
 {
     if (ptr == nm_nptr) return;
-    struct _nm_uptr_meta *meta = _nm_uptr_get_meta(ptr);
-    //assert(ptr == meta->ptr);
-    meta->destructor(ptr);
+    struct _nm_uptr_meta* meta = _nm_uptr_get_meta(ptr);
+    if (meta->dtor) meta->dtor(ptr);
     free(meta);
 }
 
 __attribute__((always_inline))
-inline static void _nm_mem_free_stack(void* ptr) 
+inline static void _nm_mem_free_stack (void* ptr) 
 {
     _nm_uptr_free(*(void **) ptr);
 }

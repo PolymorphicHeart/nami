@@ -3,7 +3,7 @@ set (CMAKE_C_STANDARD 23)
 
 set (TEST_SOURCES
     "test/test.c"
-    "test/test_cont_array.c")
+    "test/test_cont_vec.c")
 
 set (TEST_INCLUDES
     "test/"

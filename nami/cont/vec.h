@@ -2,6 +2,7 @@
 #define NAMI_VEC_H
 
 #include "core.h"
+#include "memory.h"
 
 /* ------ Public Vector API ---------------------
  * ----------------------------------------------
@@ -84,7 +85,27 @@
     }                                                                                   \
 }
 
-/* ------ Vector Implementation ------------------
+// Iterates through each element of a vector.
+#define nm_vec_foreach(elem, vec, ...)                                            \
+{                                                                                 \
+    for (u64 elem_vec_iter = 0; elem_vec_iter < nm_vec_len(vec); elem_vec_iter++) \
+    {                                                                             \
+        elem = vec[elem_vec_iter];                                                \
+        { __VA_ARGS__ }                                                           \
+    }                                                                             \
+}
+
+// Iterates through each element of a vector in reverse.
+#define nm_vec_foreach_rev(elem, vec, ...)                                             \
+{                                                                                      \
+    for (i64 elem_vec_iter = nm_vec_len(vec) - 1; elem_vec_iter > -1; --elem_vec_iter) \
+    {                                                                                  \
+        elem = vec[elem_vec_iter];                                                     \
+        { __VA_ARGS__ }                                                                \
+    }                                                                                  \
+}
+
+/* ------ Vector Implementation -----------------
  * ----------------------------------------------
 */
 

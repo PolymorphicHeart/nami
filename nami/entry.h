@@ -8,11 +8,12 @@ i32 nm_main (nm_vec(const c8*) args);
 i32 main (i32 argc, const c8** argv)
 {
     nm_vec(const c8*) args = nm_vec_new_res(const c8*, argc);
-    for (i32 i = 0; i < argc; i++) args[i] = argv[i];
+    memmove(args, argv, nm_vec_len(args) * sizeof(c8*));
 
     i32 ret = nm_main(args);
-    nm_vec_free(args);
 
+    // is this really needed right before termination?
+    nm_vec_free(args);
     return ret;
 }
 

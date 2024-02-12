@@ -19,6 +19,6 @@
     }                                           \
 }
 
-bool test_cont_array (void);
+bool test_cont_vec (void);
 
 #endif // TEST_H
