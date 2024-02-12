@@ -64,6 +64,10 @@
 #   define NM_BREAKPOINT __builtin_trap()
 #endif // BREAKPOINTS
 
+#if defined(__STDC_VERSION__)
+#   define NM_STDC_VERSION __STDC_VERSION__
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -89,6 +93,12 @@ typedef __SIZE_TYPE__ usize;
 typedef float  f32;
 typedef double f64;
 typedef char   c8;
+
+#if defined(NM_STDC_VERSION)
+#   if NM_STDC_VERSION < 202000L
+        typedef enum {false=0, true=1} bool;
+#   endif
+#endif
 
 NM_STATIC_ASSERT (sizeof(u8)  == 1, "u8 expected to be 1 byte");
 NM_STATIC_ASSERT (sizeof(u16) == 2, "u16 expected to be 2 byte(s)");
