@@ -2,11 +2,10 @@ cmake_minimum_required (VERSION 3.12)
 set (CMAKE_C_STANDARD 23)
 
 set (TEST_SOURCES
-    "test/test.c"
-    "test/test_cont_vec.c")
+    "tests/test_vec.c")
 
 set (TEST_INCLUDES
-    "test/"
+    "tests/"
     "nami/"
     "./")
 

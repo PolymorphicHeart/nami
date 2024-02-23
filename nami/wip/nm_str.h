@@ -1,7 +1,7 @@
 #ifndef NAMI_STR_H
 #define NAMI_STR_H
 
-#include "core.h"
+#include "nm_core.h"
 
 NM_CPP_HEADER_CHECK_START
 
@@ -210,8 +210,6 @@ static nm_str nm_str_fmt (const nm_str fmt, ...)
 
     nm_str_cat(nstr, plain);
     va_end(va);
-
-    nstr.buf[nstr.len] = 0;
     return nstr;
 }
 

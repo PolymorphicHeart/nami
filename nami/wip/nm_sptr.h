@@ -1,9 +1,9 @@
-#ifndef NAMI_MEMORY_H
-#define NAMI_MEMORY_H
+#ifndef NAMI_SPTR_H
+#define NAMI_SPTR_H
 
-// NOTE: This portion of libnami is very experimental and may not even exist in the future...
+// NOTE: This nami header is very experimental and may not even exist in the future...
 
-#include "core.h"
+#include "nm_core.h"
 
 NM_CPP_HEADER_CHECK_START
 
@@ -66,4 +66,4 @@ inline static void _nm_mem_free_stack (void* ptr)
 
 NM_CPP_HEADER_CHECK_END
 
-#endif // NAMI_MEMORY_H
+#endif // NAMI_SPTR_H

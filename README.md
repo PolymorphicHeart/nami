@@ -1,13 +1,12 @@
 <img src="branding/libnami.png" align="left" width="30%"/>
-<h1>libnami - C helper library</h1>
+<h1>Nami - Tiny C Headers</h1>
 <div float="left">
 <img alt="GitHub License" src="https://img.shields.io/github/license/PolymorphicHeart/libnami">
-<img alt="Static Badge" src="https://img.shields.io/badge/language-C23-white">
-
+<img alt="Static Badge" src="https://img.shields.io/badge/language-C17-white">
 </div>
 
-Header only library for quality of life improvements. Includes dynamically allocated containers,
-improved string handling, memory management helpers, useful macros, and more.
+A collection of tiny, quality of life headers. Includes dynamically allocated containers,
+string handling, memory management, useful macros, etc.
 <br clear="left"/>
 <br/>
 
@@ -21,6 +20,6 @@ improved string handling, memory management helpers, useful macros, and more.
  - [ ] Tcp and udp networking
 
 <b> 
-  ‼ Note: This library is in its early stages of development. Stability issues, 
+  ‼ Note: These headers are in their early stages of development. Stability issues, 
   breaking API changes, and missing features are all to be expected!
 </b>

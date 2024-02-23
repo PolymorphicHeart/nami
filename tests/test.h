@@ -1,7 +1,7 @@
 #ifndef TEST_H
 #define TEST_H
 
-#include <nami/core.h>
+#include "nami/nm_core.h"
 
 #define ASSERT_TEST(expr, msg_fail)             \
 {                                               \
@@ -18,7 +18,5 @@
         NM_BREAKPOINT;                          \
     }                                           \
 }
-
-bool test_cont_vec (void);
 
 #endif // TEST_H

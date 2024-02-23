@@ -1,7 +1,7 @@
 #ifndef NAMI_VEC_H
 #define NAMI_VEC_H
 
-#include "core.h"
+#include "nm_core.h"
 
 /* ------ Public Vector API ---------------------
  * ----------------------------------------------
@@ -133,7 +133,7 @@ NM_CPP_HEADER_CHECK_START
 static void* _nm_vec_create (u64 stride, u64 count)
 {
     u64 capacity = (count > 0) ? stride * count : stride * _NM_VEC_GROWTH_MULT;
-    void* ptr = calloc(1, _NM_VEC_HEADER_SIZE + capacity);
+    c8* ptr = (c8*)calloc(1, _NM_VEC_HEADER_SIZE + capacity);
 
     ((u64*)ptr)[0] = stride;
     ((u64*)ptr)[1] = count;
