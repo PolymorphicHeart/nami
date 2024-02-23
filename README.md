@@ -8,16 +8,24 @@
 A collection of tiny, quality of life headers. Includes dynamically allocated containers,
 string handling, memory management, useful macros, etc.
 <br clear="left"/>
-<br/>
 
-<h2>Planned features</h2>
-
- - [ ] Useful quality of life macros and defines
- - [ ] Dynamic containers (such as vec)
- - [ ] String manipulation
- - [ ] Easier IO functionality and formatting
- - [ ] Memory handling and smart pointers
- - [ ] Tcp and udp networking
+<table>
+  <tr>
+    <th>Header</th>
+    <th>Lines</th> 
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>nm_core.h</td>
+    <td>132</td> 
+    <td>Core header for nami. Contains useful macros, platform defines, etc.</td>
+  </tr>
+  <tr>
+    <td>nm_vec.h</td>
+    <td>148</td> 
+    <td>Generic, dynamically allocated arrays.</td>
+  </tr>
+</table>
 
 <b> 
   ‼ Note: These headers are in their early stages of development. Stability issues, 
