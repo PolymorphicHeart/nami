@@ -115,7 +115,7 @@ static nm_str _nm_str_move (nm_str* str)
 static nm_str nm_str_fmt (const nm_str fmt, ...)
 {
     nm_str nstr = nm_str_new("");
-    nm_str plain = nm_str_new("");
+    nm_str plain = nm_str_empty;
     nm_str tok = nm_str_empty;
     bool tok_look = false;
     va_list va;
