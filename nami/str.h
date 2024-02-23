@@ -2,8 +2,6 @@
 #define NAMI_STR_H
 
 #include "core.h"
-#include <stdarg.h>
-#include <stdio.h>
 
 NM_CPP_HEADER_CHECK_START
 

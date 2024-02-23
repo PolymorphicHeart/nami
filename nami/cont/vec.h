@@ -2,7 +2,6 @@
 #define NAMI_VEC_H
 
 #include "core.h"
-#include "memory.h"
 
 /* ------ Public Vector API ---------------------
  * ----------------------------------------------
