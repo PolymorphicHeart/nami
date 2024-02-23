@@ -3,6 +3,7 @@
 /.idea
 /.vs
 /.zed
+/.cache
 
 # Output directories
 /bin
