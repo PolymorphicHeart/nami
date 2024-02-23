@@ -2,6 +2,8 @@
 #define NAMI_VEC_H
 
 #include "nm_core.h"
+#include <stdlib.h>
+#include <string.h>
 
 /* ------ Public Vector API ---------------------
  * ----------------------------------------------
