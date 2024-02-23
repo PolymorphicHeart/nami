@@ -1,4 +1,4 @@
-<img src="branding/libnami.png" align="left" width="30%"/>
+<img src="logo.png" align="left" width="30%"/>
 <h1>Nami - Tiny C Headers</h1>
 <div float="left">
 <img alt="GitHub License" src="https://img.shields.io/github/license/PolymorphicHeart/libnami">
