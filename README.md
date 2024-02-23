@@ -17,7 +17,7 @@ string handling, memory management, useful macros, etc.
   </tr>
   <tr>
     <td>nm_core.h</td>
-    <td>132</td> 
+    <td>130</td> 
     <td>Core header for nami. Contains useful macros, platform defines, etc.</td>
   </tr>
   <tr>

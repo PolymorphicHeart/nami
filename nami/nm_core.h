@@ -74,10 +74,7 @@
 #include <stdarg.h>
 
 #define nm_static_assert(expr, msg) _Static_assert(expr, msg)
-
 #define nm_nptr ((void*)0)
-
-typedef __builtin_va_list nm_vargs;
 
 typedef __UINT8_TYPE__   u8;
 typedef __UINT16_TYPE__ u16;
