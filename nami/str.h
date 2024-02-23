@@ -130,8 +130,6 @@ static nm_str nm_str_fmt (const nm_str fmt, ...)
         if (fmt.buf[i] == '{') 
         {
             nm_str_cat(nstr, plain);
-            tok.buf = fmt.buf + (i + 1);
-            tok.len = 0;
 
             if (fmt.buf[i + 1] == '{')
             {
@@ -141,6 +139,8 @@ static nm_str nm_str_fmt (const nm_str fmt, ...)
                 continue;
             }
 
+            tok.buf = fmt.buf + (i + 1);
+            tok.len = 0;
             tok_look = true;
         }
 
