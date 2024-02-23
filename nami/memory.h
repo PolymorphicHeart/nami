@@ -1,6 +1,8 @@
 #ifndef NAMI_MEMORY_H
 #define NAMI_MEMORY_H
 
+// NOTE: This portion of libnami is very experimental and may not even exist in the future...
+
 #include "core.h"
 
 NM_CPP_HEADER_CHECK_START

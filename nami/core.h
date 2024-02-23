@@ -71,6 +71,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdarg.h>
 
 #define nm_static_assert(expr, msg) _Static_assert(expr, msg)
 
